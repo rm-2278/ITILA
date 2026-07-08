@@ -41,15 +41,35 @@ The codewords can be uniquely decomposed and decoded.
 
 
 \begin{prob}{5.14}
+Prove the result stated above, that for any set of codeword lengths $\{l_i\}$ satisfying the Kraft inequality,
+there is a prefix code having those lengths.
 \end{prob}
 \begin{sol}
+Sort $l_i$ in descending order, and fill them into the budget diagram from top to bottom. \\
+When the Kraft inequality is satisfied, there will always be a fit  without any overlaps i.e. a prefix code.
 \end{sol}
 \bigskip
 
 
 \begin{prob}{5.16}
+    Prove that there is no better symbol code for a source than the Huffman code.
 \end{prob}
 \begin{sol}
+Sibling lemma: \\
+In an optimal code, if $p_i < p_j$ then $l_i \ge l_j$ since otherwise we can swap p for i and j to strictly decrease $L$. \\
+Also, two longest codewords must be equal length (otherwise truncate) and can be taken to be siblings (differ by only last bit). \\
+These prove that two least-probable symbols can be constructed to be siblings at max depth. \\
+
+Now, we prove that Huffman coding is optimal by induction on $n$ (the number of symbols): \\
+\begin{enumerate}[label=(\roman*)]
+    \item Base: Optimal $L = 1$, which is what Huffman constructs.
+    \item Inductive step: \\
+    Assume Huffman coding is optimal for $n-1$ symbols. Let $a, b$ be the least probable symbols of $n$ symbols. \\
+    Huffman merges $a, b$ into a new symbol and applies the algorithm to the remaining $n-1$ symbols (optimal by hypothesis with length $L'$), then splits the new symbol into a and b. This means Huffman's length is $L_H = L' + p_a + p_b$. \\
+    Now, assume $L_{opt} \le L_H$. By the lemma we can assume $a, b$ are siblings and by merging we get a symbol code of $L_{opt} - p_a - p_b$. Since $L'$ optimal, $L_{opt} - p_a - p_b \ge L'$. \\
+    Thus $L_{opt} \ge L' + p_a + p_b = L_H \ge L_opt$ so $L_H = L_{opt}$. Hence Huffman coding optimal for $n$ symbols.
+\end{enumerate}
+
 \end{sol}
 \bigskip
 
