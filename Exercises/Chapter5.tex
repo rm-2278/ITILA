@@ -31,10 +31,10 @@ title=\textbf{Exercise #1}}
 \begin{document}
 
 \begin{prob}{5.8}
-Is $C_2$ uniquely decodeable?
+Is $C_2$ uniquely decodable?
 \end{prob}
 \begin{sol}
-Yes, because we can determine all the position where 101 is from where 0s are. Then, we can determine that the remaining 1s are coded from 1s.
+Yes, because we can determine all the positions where 101 is from where 0s are. Then, we can determine that the remaining 1s are coded from 1s.
 The codewords can be uniquely decomposed and decoded.
 \end{sol}
 \bigskip
@@ -46,7 +46,7 @@ there is a prefix code having those lengths.
 \end{prob}
 \begin{sol}
 Sort $l_i$ in descending order, and fill them into the budget diagram from top to bottom. \\
-When the Kraft inequality is satisfied, there will always be a fit  without any overlaps i.e. a prefix code.
+When the Kraft inequality is satisfied, there will always be a fit without any overlaps i.e. a prefix code.
 \end{sol}
 \bigskip
 
@@ -60,14 +60,14 @@ In an optimal code, if $p_i < p_j$ then $l_i \ge l_j$ since otherwise we can swa
 Also, two longest codewords must be equal length (otherwise truncate) and can be taken to be siblings (differ by only last bit). \\
 These prove that two least-probable symbols can be constructed to be siblings at max depth. \\
 
-Now, we prove that Huffman coding is optimal by induction on $n$ (the number of symbols): \\
+Now, we prove that Huffman coding is optimal by induction on $n$ (the number of symbols):
 \begin{enumerate}[label=(\roman*)]
     \item Base: Optimal $L = 1$, which is what Huffman constructs.
     \item Inductive step: \\
     Assume Huffman coding is optimal for $n-1$ symbols. Let $a, b$ be the least probable symbols of $n$ symbols. \\
     Huffman merges $a, b$ into a new symbol and applies the algorithm to the remaining $n-1$ symbols (optimal by hypothesis with length $L'$), then splits the new symbol into a and b. This means Huffman's length is $L_H = L' + p_a + p_b$. \\
     Now, assume $L_{opt} \le L_H$. By the lemma we can assume $a, b$ are siblings and by merging we get a symbol code of $L_{opt} - p_a - p_b$. Since $L'$ optimal, $L_{opt} - p_a - p_b \ge L'$. \\
-    Thus $L_{opt} \ge L' + p_a + p_b = L_H \ge L_opt$ so $L_H = L_{opt}$. Hence Huffman coding optimal for $n$ symbols.
+    Thus $L_{opt} \ge L' + p_a + p_b = L_H \ge L_{opt}$ so $L_H = L_{opt}$. Hence Huffman coding optimal for $n$ symbols.
 \end{enumerate}
 
 \end{sol}
@@ -75,19 +75,170 @@ Now, we prove that Huffman coding is optimal by induction on $n$ (the number of 
 
 
 \begin{prob}{5.19}
-Is the code $\{00, 11, 0101, 111, 1010, 100100, 0110\}$ uniquely decodeable?
+Is the code $\{00, 11, 0101, 111, 1010, 100100, 0110\}$ uniquely decodable?
 \end{prob}
 \begin{sol}
-No, since '111111' can be decoded as '11/11/11' or '111/111'.
+No, since `111111' can be decoded as `11/11/11' or `111/111'.
 \end{sol}
 \bigskip
 
 
 \begin{prob}{5.20}
-Is the ternary code $\{00, 012, 0110, 0112, 100, 201, 212, 22\}$ uniquely decodeable?
+Is the ternary code $\{00, 012, 0110, 0112, 100, 201, 212, 22\}$ uniquely decodable?
 \end{prob}
 \begin{sol}
 This is a prefix code so yes, it is uniquely decodable.
+\end{sol}
+\bigskip
+
+\begin{prob}{5.21}
+     Make Huffman codes for $X^2$, $X^3$ and $X^4$ where $\mathcal{A}_X = \{0, 1\}$ and $\mathcal{P}_X = \{0.9, 0.1\}$.
+     Compute their expected lengths and compare them with the entropies $H(X^2)$, $H(X^3)$ and $H(X^4)$.
+     \noindent Repeat this exercise for $X^2$ and $X^4$ where $\mathcal{P}_X = \{0.6, 0.4\}$.
+\end{prob}
+\begin{sol}
+$X^2$ \\
+\begin{tabular}{ c c l }
+00 & 0.81 & 0 \\ 
+01 & 0.09 & 10 \\  
+10 & 0.09 & 110 \\
+11 & 0.01 & 111 
+\end{tabular}\\
+
+$L(C, X) = 0.81 \times 1 + 0.09 \times 2 + 0.1 \times 3 = 1.29$ \\
+$H(X^2) = 0.9380$ \\
+
+
+$X^3$ \\
+\begin{tabular}{ c c l }
+000 & 0.729 & 0 \\ 
+001 & 0.081 & 100 \\  
+010 & 0.081 & 101 \\
+100 & 0.081 & 110 \\
+011 & 0.009 & 11100 \\ 
+101 & 0.009 & 11101 \\  
+110 & 0.009 & 11110 \\
+111 & 0.001 & 11111 
+\end{tabular}\\
+
+We get $L(C, X) = 1.598$, $H(X^3) = 1.407$ \\
+
+
+$X^4$ \\
+\begin{tabular}{ c c l }
+0000 & 0.6561 & 0 \\ 
+0001 & 0.0729 & 100 \\  
+0010 & 0.0729 & 101 \\
+0100 & 0.0729 & 110 \\
+1000 & 0.0729 & 1110 \\ 
+0011 & 0.0081 & 111000 \\  
+0101 & 0.0081 & 111001 \\
+0110 & 0.0081 & 1111010 \\
+1001 & 0.0081 & 1111011 \\ 
+1010 & 0.0081 & 111110 \\  
+1100 & 0.0081 & 1111110 \\
+0111 & 0.0009 & 11111100 \\
+1011 & 0.0009 & 11111101 \\ 
+1101 & 0.0009 & 111111110 \\  
+1110 & 0.0009 & 1111111110 \\
+1111 & 0.0001 & 1111111111 
+\end{tabular}\\
+
+We get $L(C, X) = 1.9702$, $H(X^4) = 1.876$ \\
+
+
+Now, for $\mathcal{P}_X = \{0.6, 0.4\}$, $H(X) = 0.9710$ so \\
+$H(X^2) = 1.9420$ and $H(X^4) = 3.8840$. \\
+With a similar procedure as above, we obtain \\
+$L(C, X) = 2$ and $L(C, X) = 3.9248$ respectively.
+
+\end{sol}
+\bigskip
+
+\begin{prob}{5.22}
+Find a probability distribution $\{p_1, p_2, p_3, p_4\}$ such that there are \emph{two} optimal codes that assign different lengths $\{l_i\}$ to the four symbols.
+\end{prob}
+\begin{sol}
+$\{\frac{1}{3}, \frac{1}{3}, \frac{1}{6}, \frac{1}{6}\}$ is one such distribution.\\
+$l = \{00, 00, 01, 11\}$ and $l = \{0, 10, 110, 111\}$ have both $L = 2$.
+\end{sol}
+\bigskip
+
+\begin{prob}{5.23}
+(Continuation of exercise 5.22.) Assume that the four probabilities $\{p_1, p_2, p_3, p_4\}$ are ordered such that $p_1 \ge p_2 \ge p_3 \ge p_4 \ge 0$. Let $Q$ be the set of all probability vectors $\mathbf{p}$ such that there are \emph{two} optimal codes with different lengths. Give a complete description of $Q$. Find three probability vectors $\mathbf{q}^{(1)}, \mathbf{q}^{(2)}, \mathbf{q}^{(3)}$, which are the convex hull of $Q$, i.e., such that any $\mathbf{p} \in Q$ can be written as
+\begin{equation}
+    \mathbf{p} = \mu_1\mathbf{q}^{(1)} + \mu_2\mathbf{q}^{(2)} + \mu_3\mathbf{q}^{(3)}, \tag{5.29}
+\end{equation}
+where $\{\mu_i\}$ are positive.
+\end{prob}
+\begin{sol}
+For there to be two optimal codes with different lengths, since there are 3 merges taken, there must be 2 different ways to merge in the second merge (For first merge, it just makes it symmetric, for last, there is only 1 possible merge). \\
+For that, $p_1$ must be equal to $p_3 + p_4$. Together with the other conditions,
+\[
+\begin{cases}
+    p_1 = p_3 + p_4 \\
+    p_1 + p_2 + p_3 + p_4 = 1\\
+    p_1 \geq p_2 \geq p_3 \geq p_4 \geq 0
+\end{cases}
+\]
+$\iff$
+\[
+\begin{cases}
+    p_1 = p_3 + p_4 \\
+    2p_1 + p_2 = 1 \\
+    p_1 \geq p_2 \geq p_3 \geq p_4 \geq 0
+\end{cases}
+\]
+$\iff$
+\[
+\begin{cases}
+    p_1 \geq \frac{1}{3} \\
+    p_3 \leq 1 - 2p_1 \\
+    p_3 \geq \frac{p_1}{2}
+\end{cases}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=8cm, height=8cm,
+    xlabel={$p_1$}, ylabel={$p_3$},
+    xmin=0, xmax=0.5,
+    ymin=0, ymax=0.5,
+    axis lines=left,
+    legend pos=outer north east,
+    legend style={font=\footnotesize},
+    domain=0:0.5,
+    samples=2,
+]
+    \addplot[fill=blue!15, draw=none] coordinates {
+        (0.3333,0.3333) (0.4,0.2) (0.3333,0.1667)
+    } -- cycle;
+
+    \addplot[thick, violet] coordinates {(0.3333,0) (0.3333,0.5)};
+    \addlegendentry{$p_1=\tfrac13$}
+
+    \addplot[thick, red] {1-2*x};
+    \addlegendentry{$p_3=1-2p_1$}
+
+    \addplot[thick, teal] {x/2};
+    \addlegendentry{$p_3=p_1/2$}
+
+    \filldraw (axis cs:0.3333,0.3333) circle (1.3pt) node[above left]{\footnotesize $q^{(1)}$};
+    \filldraw (axis cs:0.3333,0.1667) circle (1.3pt) node[below left]{\footnotesize $q^{(2)}$};
+    \filldraw (axis cs:0.4,0.2) circle (1.3pt) node[right]{\footnotesize $q^{(3)}$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+The above area shows the possible $p_1, p_3$ pair (which uniquely determines $p_2, p_4$ from the conditions). \\
+Therefore, from linearity we get \\
+\begin{align*}
+    q_1 = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, 0) \\
+    q_2 = (\frac{1}{3}, \frac{1}{6}, \frac{1}{6}, \frac{1}{6}) \\
+    q_3 = (\frac{2}{5}, \frac{1}{5}, \frac{1}{5}, \frac{1}{5})
+\end{align*}
+
 \end{sol}
 \bigskip
 
