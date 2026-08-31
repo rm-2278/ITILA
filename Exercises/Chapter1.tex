@@ -167,9 +167,9 @@ which results in 61.
     \end{bmatrix}
     = 
     \begin{bmatrix}
-        0 \\
-        0 \\
-        0
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
     \end{bmatrix}
     $
 
@@ -261,10 +261,10 @@ The generator matrix would be
 \[
 \left[
 \begin{array}{ccccccccccccccc}
-        1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+        1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 \\
         1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 \\
         0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
 \end{array}
 \right]
 \]
@@ -286,7 +286,7 @@ $$
 $$
 The space for the received message is
 $$
-2^14 = 2^8 \cdot 64 \, < 2^8 \cdot 106
+2^{14} = 2^8 \cdot 64 \, < 2^8 \cdot 106
 $$
 so it is impossible to create a (14, 8) two-bit error correcting code.
 This is regardless of whether the code is linear or non-linear.
