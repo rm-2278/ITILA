@@ -96,7 +96,7 @@ Unstable particles are emitted from a source and decay at a distance $x$, a real
 \end{align*}
 and if we let 
 \begin{align*}
-    Z(\lambda) &- \int_{1}^{20} \frac{1}{\lambda} e^{-\frac{x}{\lambda}} dx \\
+    Z(\lambda) &= \int_{1}^{20} \frac{1}{\lambda} e^{-\frac{x}{\lambda}} dx \\
     &= \left[-e^{-\frac{x}{\lambda}} \right]_1^20 \\
     &= e^{-\frac{1}{\lambda}} - e^{-\frac{20}{\lambda}} \\
 \end{align*}
@@ -210,7 +210,7 @@ At this point, you will be given a fresh choice of door: you can either stick wi
 Imagine that the contestant chooses door 1 first; then the gameshow host opens door 3, revealing nothing behind the door, as promised. Should the contestant (a) stick with door 1, or (b) switch to door 2, or (c) does it make no difference?
 \end{prob}
 \begin{sol}
-    The contestant should (b) switch to door 2. let ``this'' be the event that the prize was in the first choice of door, ``other'' be the event that the prize was in the other unrevelead door, ``evi'' the revealed door being that specific door. Comparin the likelihood ratio. \\
+    The contestant should (b) switch to door 2. let ``this'' be the event that the prize was in the first choice of door, ``other'' be the event that the prize was in the other unrevelead door, ``evi'' the revealed door being that specific door. Comparing the likelihood ratio, \\
     $$\frac{P(\text{evi} | \text{this})}{P(\text{evi} | \text{other})} = \frac{\frac{1}{2}}{1} = \frac{1}{2}$$
     so there is a double chance that the prize is in the other door.
 \end{sol}
@@ -265,10 +265,10 @@ Should the contestant stick with door 1, or switch to door 2, or does it make no
 \end{prob}
 \begin{sol}
     \begin{align*}
-        P(S_{\text{guilty}} | \text{beaten}, \text{murdered}) &= \frac{P(\text{beaten} | S_{\text{guilty}}, \text{murdered})P(S_{\text{guilty}})}{P(\text{beaten} | \text{murdered})} \\
+        P(S_{\text{guilty}} | \text{beaten}, \text{murdered}) &= \frac{P(\text{beaten} | S_{\text{guilty}}, \text{murdered})P(S_{\text{guilty}} | \text{murdered})}{P(\text{beaten} | \text{murdered})} \\
     \end{align*}
-    We must compare $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ against $P(\text{beaten} | \text{murdered})$ to really conclude how the evidence affects how likely Mr S is guilty. \\
-    In fact, $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ will likely be higher, so the lawyer is a slimy trickster. In other words, he is stating the probability of a wife-beater murdering the wife, whereas we need the probability of the wife-beating husband murdering the wife given the wife is murdered.
+    We must compare $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ against $P(\text{beaten} | \neg S_{\text{guilty}}, \text{murdered})$ to really conclude how the evidence affects how likely Mr S is guilty. \\
+    In fact, $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ will likely be much higher, so the lawyer is a slimy trickster. In other words, he quotes the probability of a wife-beater going on to murder his wife, whereas what matters here is the probability that Mr S is the murderer, given both that he beat his wife and that she was in fact murdered.
 \end{sol}
 \bigskip
 
@@ -302,7 +302,7 @@ Should the contestant stick with door 1, or switch to door 2, or does it make no
 \bigskip
 
 \begin{prob}{3.14}
-In a game, two coins are tossed. If either of the coins comes up heads, you have won a prize. To claim the prize, you must point to one of your coins that is a head and say ‘look, that coin’s a head, I’ve won’. You watch Fred play the game. He tosses the two coins, and he
+In a game, two coins are tossed. If either of the coins comes up heads, you have won a prize. To claim the prize, you must point to one of your coins that is a head and say ‘look, that coin’s a head, I’ve won’. You watch Fred play the game. He tosses the two coins, and he points to a coin and says, ‘look, that coin’s a head, I’ve won’. What is the probability that the other coin is a head?
 \end{prob}
 \begin{sol}
     Let D be the case Fred has double coins head, and W the case Fred won the game.
