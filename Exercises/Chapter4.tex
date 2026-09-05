@@ -211,7 +211,7 @@ is the odd ball in as few uses of the balance as possible.
       ]
     ]
   ]
-\end{forest} 
+\end{forest}
 \\
 
 As above, 4 weighings are needed.
@@ -403,14 +403,17 @@ What is its normalizing constant $Z$? Can you evaluate its mean or variance?
     &= \frac{1}{\pi} \{ \int_{0}^{\infty} \frac{x}{x^2 + 1} dx + \int_{-\infty}^{0} \frac{x}{x^2 + 1} dx \} \\
     &= \frac{1}{\pi} \{ \infty - \infty \}
 \end{align*}
-so the mean is undefined, which also implies the variance is undefined.
+so the mean is undefined, which also implies the variance is undefined. \\
 
-\begin{align*}
-    P(z) &= \int P(x_2 = z - x_1 | x_1)P(x_1) dx_1 \\
-    &= \int P(z - x_1)P(x_1) dx_1 \\
-    &= \int \frac{1}{\pi^2} \frac{1}{(z-x_1)^2 + 1} \cdot \frac{1}{x_1^2 + 1} dx_1 \\
-    &= \frac{1}{\pi^2} \int \frac{1}{(x_1-z)^2 + 1} \cdot \frac{1}{x_1^2 + 1} dx_1
-\end{align*}
+The PDF of Cauchy(scale=$\sigma$) is $$P(x) = \frac{1}{\pi} \frac{\sigma}{\sigma^2 + x^2}$$
+and the characteristic function is $$\phi(t) = \exp(-\sigma |t|)$$
+Then, the characteristic function of $z = x_1 + x_2$ is $$\phi_z(t) = \phi_{x_1}(t) \cdot \phi_{x_2}(t) = \exp(-\sigma |t|) \cdot \exp(-\sigma |t|) = \exp(-2\sigma |t|)$$
+This is the characteristic function of Cauchy(scale=$2\sigma$), so $z$ is Cauchy distributed with scale $2\sigma$. \\
+Similarly, the characteristic function of $\bar{x} = (x_1 + x_2)/2$ is $$\phi_{\bar{x}}(t) = \phi_z(t/2) = \exp(-\sigma |t|)$$
+This is the characteristic function of Cauchy(scale=$\sigma$), so $\bar{x}$ is also Cauchy distributed with scale $\sigma$. \\
+Similarly, the characteristic function of $\bar{x}_N = (x_1 + x_2 + ... + x_N)/N$ is $$\phi_{\bar{x}_N}(t) = (\phi_x(t/N))^N = (\exp(-\sigma |t/N|))^N = \exp(-\sigma |t|)$$
+This is the characteristic function of Cauchy(scale=$\sigma$), so $\bar{x}_N$ is also Cauchy distributed with scale $\sigma$. \\
+Hence, the mean of $N$ samples from a Cauchy distribution is also Cauchy distributed with the same scale parameter $\sigma$ as the original distribution, and the mean does not converge to a single value as $N$ increases, unlike distributions with finite variance. 
 \end{sol}
 \bigskip
 
