@@ -405,7 +405,7 @@ What is its normalizing constant $Z$? Can you evaluate its mean or variance?
 \end{align*}
 so the mean is undefined, which also implies the variance is undefined. \\
 
-The PDF of Cauchy(scale=$\sigma$) is $$P(x) = \frac{1}{\pi} \frac{\sigma}{\sigma^2 + x^2}$$
+The PDF of Cauchy(scale=$\sigma$) is $$P(x) = \frac{1}{\pi} \frac{1}{1 + \frac{x^2}{\sigma^2}}$$
 and the characteristic function is $$\phi(t) = \exp(-\sigma |t|)$$
 Then, the characteristic function of $z = x_1 + x_2$ is $$\phi_z(t) = \phi_{x_1}(t) \cdot \phi_{x_2}(t) = \exp(-\sigma |t|) \cdot \exp(-\sigma |t|) = \exp(-2\sigma |t|)$$
 This is the characteristic function of Cauchy(scale=$2\sigma$), so $z$ is Cauchy distributed with scale $2\sigma$. \\
