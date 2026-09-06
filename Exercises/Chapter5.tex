@@ -211,7 +211,7 @@ $\iff$
     domain=0:0.5,
     samples=2,
 ]
-    \addplot[fill=blue!15, draw=none] coordinates {
+    \addplot[fill=blue!15, draw=none, forget plot] coordinates {
         (0.3333,0.3333) (0.4,0.2) (0.3333,0.1667)
     } -- cycle;
 
@@ -240,6 +240,39 @@ Therefore, from linearity we get \\
 \end{align*}
 
 \end{sol}
+\bigskip
+
+\begin{prob}{5.24}
+    Write a short essay discussing how to play the game of \textbf{twenty questions} optimally. [In twenty questions, one player thinks of an object, and the other player has to guess the object using as few binary questions as possible, preferably fewer than twenty.]
+\end{prob}
+\begin{sol}
+    To maximise information obtained, we want to bring the estimated probability of yes/no to be close to 50\% as possible.
+    This is impractical to do accurately (since considering all possible objects and its likelihood as the answer are impractical),
+    but we can do an approximation by randomly coming up with several objects and think of a question that divides them in 2 (Monte-Carlo approximation, assuming you and the opponent has similar answer distribution).
+\end{sol}
+\bigskip
+
+\begin{prob}{5.25}
+    Show that, if each probability $p_i$ is equal to an integer power of 2 then there exists a source code whose expected length equals the entropy.
+\end{prob}
+\begin{sol}
+    Set the length for symbol with $p_i$ to be $\log\frac{1}{p_i}$ which is an integer. Then,
+    $$L(C, X) = \sum_i p_i l_i = \sum_i p_i \log\frac{1}{p_i} = H(X) $$
+\end{sol}
+\bigskip
+
+\begin{prob}{5.26}
+    Make ensembles for which the difference between the entropy and the expected length of the Huffman code is as big as possible.
+\end{prob}
+\begin{sol}
+    We want to maximise $L(C, X) - H(X) = \sum p_i (l_i - \log\frac{1}{p_i})$. \\
+    $l_i - \log\frac{1}{p_i} < 1$ so most contribution will come from the symbol that has large $p_i$. We want to make $l_i - \log\frac{1}{p_i}$ as close to 1 for such symbols. \\
+    Consider two-symbol ensemble with probabilities $\epsilon$ and $1-\epsilon$ $(0 < \epsilon < 1)$. Then, $L(C, X) = 1$ regardless of the value of $\epsilon$. \\
+    However, $H(X) = H_2(\eps) \rightarrow 0$ as $\epsilon \rightarrow 0$. \\
+    Hence the ensemble with an extremely skewed probability has a difference between the entropy close to 1, which is as big as it gets. 
+\end{sol}
+
+
 \bigskip
 
 % template
