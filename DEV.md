@@ -11,6 +11,5 @@ The `standalone` class keeps the page tightly cropped, so the resulting PNG can 
 
 ### Issues
 3.7
-4.19
 5
 6- 50

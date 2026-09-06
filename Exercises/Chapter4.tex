@@ -438,6 +438,19 @@ g(s) = \sum_x P(x) e^{sx}.
 \end{equation}
 \end{prob}
 \begin{sol}
+Markov's inequality states $P(t \geq \alpha) \leq \frac{\bar{t}}{\alpha}$ for $t$ non-negative. Let $t = e^{sx}$ which is non-negative for all $s$. \\
+Then,$\bar{t} = \overline{e^{sx}} = \sum_x P(x)e^{sx} = g(x)$. For $s >0$,
+\begin{align*}
+    &P(e^{sx} \geq \alpha) \leq \frac{\bar{t}}{\alpha} \\
+    &P(x \geq \frac{\ln \alpha}{s}) \leq \frac{\bar{t}}{\alpha} \\
+    &P(x \geq a) \leq e^{-sa} g(x) \quad (a = \frac{\ln\alpha}{s}) \\
+\end{align*}
+Similarly for $s < 0$, 
+\begin{align*}
+    &P(e^{sx} \geq \alpha) \leq \frac{\bar{t}}{\alpha} \\
+    &P(x \leq \frac{\ln \alpha}{s}) \leq \frac{\bar{t}}{\alpha} \\
+    &P(x \leq a) \leq e^{-sa} g(x) \quad (a = \frac{\ln\alpha}{s}) \\
+\end{align*}
 \end{sol}
 \bigskip
 
