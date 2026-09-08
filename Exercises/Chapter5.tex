@@ -272,6 +272,129 @@ Therefore, from linearity we get \\
     Hence the ensemble with an extremely skewed probability has a difference between the entropy $\approxeq$ 1, which is as big as it gets. 
 \end{sol}
 
+\begin{prob}{5.27}
+    A source $X$ has an alphabet of eleven characters
+\[
+\{\mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}, \mathbf{f}, \mathbf{g}, \mathbf{h}, \mathbf{i}, \mathbf{j}, \mathbf{k}\},
+\]
+all of which have equal probability, $1/11$.
+
+\noindent Find an optimal uniquely decodeable symbol code for this source. How much greater is the expected length of this optimal code than the entropy of $X$?
+\end{prob}
+\begin{sol}
+With Huffman coding, \\
+\begin{tabular}{ c c c }
+    symbol & codeword & length \\
+    a & 000 & 3 \\
+    b & 001 & 3 \\
+    c & 010 & 3 \\
+    d & 011 & 3 \\
+    e & 1000 & 4 \\
+    f & 1001 & 4 \\
+    g & 1010 & 4 \\
+    h & 1011 & 4 \\
+    i & 1100 & 4 \\
+    j & 1101 & 4 \\
+    k & 111 & 3
+\end{tabular}\\
+
+$$H(X) = \log_2 11 = 3.459$$
+$$L(C, X) = \frac{3 \times 5 + 4 \times 6}{11} = 3.545$$
+$$L(C, X) - H(X) = 0.08645$$
+\end{sol}
+\bigskip
+
+\begin{prob}{5.28}
+Consider the optimal symbol code for an ensemble $X$ with alphabet size $I$ from which all symbols have identical probability $p = 1/I$. $I$ is not a power of 2.
+
+\noindent Show that the fraction $f^+$ of the $I$ symbols that are assigned codelengths equal to
+\begin{equation}
+l^+ \equiv \lceil \log_2 I \rceil
+\end{equation}
+satisfies
+\begin{equation}
+f^+ = 2 - \frac{2^{l^+}}{I}
+\end{equation}
+and that the expected length of the optimal symbol code is
+\begin{equation}
+L = l^+ - 1 + f^+.
+\end{equation}
+By differentiating the excess length $\Delta L \equiv L - H(X)$ with respect to $I$, show that the excess length is bounded by
+\begin{equation}
+\Delta L \le 1 - \frac{\ln(\ln 2)}{\ln 2} - \frac{1}{\ln 2} = 0.086.
+\end{equation}
+\end{prob}
+\begin{sol}
+When all symbols have equal probability, the merging process will be the same as if there are $2^{\lceil \log_2 I \rceil}$ symbols (a full tournament) but with $2^{l+} - I$ dummies and the dummies being merged with their adjacents.
+The way the symbols are allocated to the tournament slots is from the left slots of the lowest stage, left to right (will fill in all) and then right slots (, left to right). \\
+Then, $2^{l+} - I$ symbols will not have their neighbour so will have length $l^+ - 1$ while the remaining will have length $l^+$. Hence, 
+\begin{align*}
+    I(1 - f^+) &= 2^{l+} - I \\
+    If^+ &= 2I - 2^{l+} \\
+    f^+ &= 2 - \frac{2^{l+}}{I}
+\end{align*}
+
+Also, 
+\begin{align*}
+    L &= l^+ f^+ + (l^+ - 1)(1 - f^+) \\
+    &= l^+ f^+ + l^+ - l^+ f^+ - 1 + f^+ \\
+    &= l^+ - 1 + f^+
+\end{align*}
+
+Now, 
+\begin{align*}
+    \Delta L &\equiv L - H(X) \\
+    &= \lceil \log_2 I \rceil - 1 + 2 - \frac{2^{l+}}{I} - \log_2 I\\
+    &= 1 - \frac{2^{l+}}{I} + \lceil \log_2 I \rceil - \log_2 I \\
+    \frac{d\Delta L}{dI} &= \frac{2^{l+}}{I^2} + 0 - \frac{1}{I \ln 2} \quad (\because I \text{ not power of 2})\\
+\end{align*}
+\begin{align*}
+    &\frac{d\Delta L}{dI} = 0 \\
+    \iff&2^{l+} - \frac{I}{\ln 2} = 0 \\
+    \iff&I = 2^{l+}\ln 2
+\end{align*}
+To confirm this critical point is a maximum, consider the second derivative:
+\begin{align*}
+    \frac{d^2 \Delta L}{dI^2} = -\frac{2 \cdot 2^{l+}}{I^3} + \frac{1}{I^2 \ln 2}
+\end{align*}
+Evaluating at $I = 2^{l+}\ln 2$,
+\begin{align*}
+    \frac{d^2 \Delta L}{dI^2}\bigg|_{I = 2^{l+}\ln 2} &= \frac{1}{I^2}\left(\frac{1}{\ln 2} - \frac{2 \cdot 2^{l+}}{I}\right) \\
+    &= \frac{1}{I^2}\left(\frac{1}{\ln 2} - \frac{2 \cdot 2^{l+}}{2^{l+}\ln 2}\right) \\
+    &= \frac{1}{I^2}\left(\frac{1}{\ln 2} - \frac{2}{\ln 2}\right) = -\frac{1}{I^2 \ln 2} < 0,
+\end{align*}
+so $\Delta L$ is concave at this point, confirming it is a (local, and since it is the only critical point, global) maximum on the interval. So
+\begin{align*}
+    \Delta L &\leq 1 - \frac{1}{\ln 2} + \log_2 \frac{2^{l+}}{I} \\
+    &= 1 - \frac{1}{\ln 2} - \log_2(\ln 2) \\
+    &= 1 - \frac{\ln(\ln 2)}{\ln 2} - \frac{1}{\ln 2} \\
+    &= 0.086
+\end{align*}
+
+\end{sol}
+\bigskip
+
+\begin{prob}{5.29}
+    Consider a sparse binary source with $\mathcal{P}_X = \{0.99, 0.01\}$. Discuss how Huffman codes could be used to compress this source \textit{efficiently}. Estimate how many codewords your proposed solutions require.
+\end{prob}
+\begin{sol}
+Let a be the symbol that has probability 0.99 and b 0.01. Then if we pair two symbols and apply Huffman coding, \\
+
+\begin{tabular}{c c c}
+    string & probability & codeword \\
+    \hline
+    aa & $0.9801$ & 0 \\
+    ab & $0.0099$ & 10 \\
+    ba & $0.0099$ & 110 \\
+    bb & $0.0001$ & 111 \\
+\end{tabular}\\
+
+Expected length $= 1 \times 0.9801 + 2 \times 0.0099 + 3 \times 0.0099 + 3 \times 0.0001 = 1.0299$. \\
+Then, Expected length per source symbol $= 0.51495$ which is much less than pure 1 symbol encoding. \\
+The drawback, however, is that odd length source code cannot be encoded.
+\end{sol}
+\bigskip
+
 
 \bigskip
 
