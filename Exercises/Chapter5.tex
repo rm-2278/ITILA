@@ -395,16 +395,114 @@ The drawback, however, is that odd length source code cannot be encoded.
 \end{sol}
 \bigskip
 
+\begin{prob}{5.30}
+    Scientific American carried the following puzzle in 1975.
 
-\bigskip
+\begin{quotation}
+\noindent \textbf{The poisoned glass.} `Mathematicians are curious birds', the police commissioner said to his wife.
+`You see, we had all those partly filled glasses lined up in rows on a table in the hotel kitchen.
+Only one contained poison, and we wanted to know which one before searching that glass for fingerprints.
+Our lab could test the liquid in each glass, but the tests take time and money, so we wanted to make as few of them as possible by simultaneously testing mixtures of small samples from groups of glasses.
+The university sent over a mathematics professor to help us. He counted the glasses, smiled and said:
 
-% template
-\begin{prob}{}
+` ``Pick any glass you want, Commissioner. We'll test it first.''
+
+` ``But won't that waste a test?'' I asked.
+
+` ``No,'' he said, ``it's part of the best procedure. We can test one glass first. It doesn't matter which one.'' '
+
+`How many glasses were there to start with?' the commissioner's wife asked.
+
+`I don't remember. Somewhere between 100 and 200.'
+
+What was the exact number of glasses?
+\end{quotation}
+
+\noindent Solve this puzzle and then explain why the professor was in fact wrong and the commissioner was right.
+What is in fact the optimal procedure for identifying the one poisoned glass?
+What is the expected waste relative to this optimum if one followed the professor's strategy?
+Explain the relationship to symbol coding.
 \end{prob}
 \begin{sol}
+The exact number of glasses was likely $2^7 + 1 = 129$. The professor's strategy was as follows: \\
+Test one glass, check if the glass is poisoned. Then, for the rest of $2^7$, assign a binary number to each and test mixture to each of them that have $i$th bit 1 from $i = 1$ to $7$, and the one that matches will be the poisoned
+(we can also do by removing half of glasses that are not poisoned each round so we don't have to mix $2^6$ glass every time). 
+$$\mathbb{E}(step) = \frac{1}{129} \times 1 + \frac{128}{129} \times 8 = 7.946$$ \\
+
+The optimal strategy is as follows: \\
+Each has probability of $\frac{1}{129}$ being poisoned, so we could apply Huffman coding to 129 glasses, and similar to above, the glass codeword that matches the result is the poisoned one. Some will have shorter codewords than others, so the procedure is ended once the result is determined (no redundant tests).
+They all have equal probability so with $\lceil \log_2 129 \rceil = 8$, there will be $256 - 129 = 127$ symbols with length $7$ and $129 - 127 = 2$ with length $8$ (look at 5.28 for explanation). Therefore,
+$$\mathbb{E}(step) = \frac{127}{129} \times 7 + \frac{2}{129} \times 8 = 7.0155$$
+Note also that $H(X) = 7.011$.
 \end{sol}
 \bigskip
 
+\begin{prob}{5.31}
+    Assume that a sequence of symbols from the ensemble $X$ introduced at the beginning of this chapter is compressed using the code $C_3$. Imagine picking one bit at random from the binary encoded sequence $c = c(x_1)c(x_2)c(x_3)\dots$. What is the probability that this bit is a 1? \\
+
+
+\centering
+
+$C_3$:
+\vspace{2pt}
+
+\begin{tabular}{ccccc}
+\hline
+$a_i$ & $c(a_i)$ & $p_i$ & $h(p_i)$ & $l_i$ \\
+\hline
+a & 0 & $1/2$ & 1.0 & 1 \\
+b & 10 & $1/4$ & 2.0 & 2 \\
+c & 110 & $1/8$ & 3.0 & 3 \\
+d & 111 & $1/8$ & 3.0 & 3 \\
+\hline
+\end{tabular}
+
+\end{prob}
+\begin{sol}
+$$\mathbb{E}(\text{number of bits added per symbol}) = \frac{1}{2} + \frac{2}{4} + \frac{3}{8} + \frac{3}{8} = \frac{7}{4}$$
+\begin{align*}
+    \mathbb{E}(\text{a bit from code sequence is 1}) &= \frac{\mathbb{E}(\text{number of 1s added per symbol})}{\mathbb{E}(\text{number of bits added per symbol})} \\
+    &= \frac{\frac{1}{2} \times 0 + \frac{1}{4} \times 1 + \frac{1}{8} \times 2 + \frac{1}{8} \times 3}{\frac{7}{4}} \\&
+    = \frac{\frac{1}{4} + \frac{1}{4} + \frac{3}{8}}{\frac{7}{4}} = \frac{1}{2}
+\end{align*}
+This makes sense since we know this is an optimal encoding.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{5.32}
+    How should the binary Huffman encoding scheme be modified to make optimal symbol codes in an encoding alphabet with $q$ symbols?
+    (Also known as `radix $q$'.)
+\end{prob}
+\begin{sol}
+Each merge decreases by $q - 1$. Top-level branch is the most valuable (it has 0-length prefix), but it can end up only merging $2$ symbols, so we must avoid that. 
+Hence, we create dummy symbols with $P = 0$ so the number of total symbols are $1 + k(q - 1)$ for the smallest possible $k$, and then after the encoding discard the dummy symbols.
+This will eliminate codes with longest length. At most $q - 2$ dummy symbols are required so the first merge will always grab all dummy symbols.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{5.33}
+    Prove that this metacode is incomplete, and explain why this combined code is suboptimal.
+\end{prob}
+\begin{sol}
+Let the length of the codeword of $x$ for a child symbol code $k$ be $l_k(x)$. \\
+The length of the codeword $x$ for metacode with $K$ child symbol codes will be
+\begin{align*}
+    L(x) &= \log_2 K + \min_k l_k(x) \\
+\end{align*}
+Considering the Kraft sum,
+\begin{align*}
+    S &= \sum_x 2^{-L(x)} \\
+    &= \sum_x 2^{-(\log_2 K + \min_k l_k(x))} \\
+    &= \frac{1}{K} \sum_x 2^{-\min_k l_k(x)} \\
+    &= \frac{1}{K} \sum_x \max_k 2^{-l_k(x)} \\
+    &< \frac{1}{K} \sum_x \sum_k 2^{-l_k(x)} \\
+    &\leq \frac{1}{K} \sum_k 1 \quad (\because \sum_x 2^{-l_k(x)} \leq 1) \\
+    &= 1
+\end{align*}
+so the metacode is incomplete.
+\end{sol}
 
 \end{document}
 
