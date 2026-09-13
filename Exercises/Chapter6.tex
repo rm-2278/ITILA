@@ -29,6 +29,16 @@ title=\textbf{Exercise #1}}
 
 
 \begin{document}
+\begin{prob}{6.1}
+    Show that the overhead required to terminate a message is never more than 2 bits, relative to the ideal message length given the probabilistic model $\mathcal{H}$, $h(\mathbf{x} \mid \mathcal{H}) = \log [1 / P(\mathbf{x} \mid \mathcal{H})]$.
+\end{prob}
+\begin{sol}
+    The worst case scenario is when the string interval lies just inside a binary interval. Then, we can choose from two binary intervals. \\
+    These binary symbols are no smaller than $\frac{P(\mathbf{x} \mid \mathcal{H})}{4}$ so the binary encoding has length no greater than
+    $$\log_2{1}{P(\mathbf{x} \mid \mathcal{H})} + \log_2 4 = \log_2{1}{P(\mathbf{x} \mid \mathcal{H})} + 2$$
+\end{sol}
+\bigskip
+
 
 % template
 \begin{prob}{}
