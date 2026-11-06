@@ -1,0 +1,109 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\begin{document}
+
+\begin{prob}{20.1}
+See if you can prove that K-means always converges.
+\end{prob}
+\begin{sol}
+We show that $\sum_{k}\sum_{{n|r_k^(n) = 1}}d(m^{(k)}, x^{(n)})$ is a Lyapunov function. \\
+When assigning, the function always decrease since $d(m^{(k)}, x^{(n)}) > d(m'^{(k)}, x^{(n)})$ \\
+We need to show the function decreases when we update the mean. \\
+Let $L_k = \sum_{{n|r_k^{(n)} = 1}}d(m^{(k)}, x^{(n)}) = \sum_{{n|r_k^(n) = 1}}\frac{1}{2}\sum_{i}(m_i^{(k)} - x_i^{(n)})^2$ \\
+\begin{align*}
+    \frac{\delta L_k}{\delta m_i} &= \sum_{{n|r_k^{(n)} = 1}}(m_i^{(k)} - x_i^{(n)}) \\
+    &= Nm_i - \sum_{{n|r_k^{(n)} = 1}}x_i^{(n)}
+\end{align*}
+\begin{align*}
+    &\frac{\delta L_k}{\delta m_i} = 0 \\
+    &\iff m_i = \frac{\sum_{{n|r_k^{(n)} = 1}}x_i^{(n)}}{N}
+\end{align*}
+This means $L_k$ is minimised when $m_i$ is the average of its members' $x_i$.
+Hence, when we update $m$ to the average of its members', it must decrease from the previous $L_k$ (equal case is eliminated since that means the means converged and the algorithm terminates). \\
+Also, the original function must be greater than or equal to 0 (equality when $\leq k$ unique points), so from those, the original function decreases.
+This proves that the K-means always converges.
+\end{sol}
+\bigskip
+
+\begin{prob}{20.2}
+Show that as the stiffness $\beta$ goes to $\infty$, the soft K-means algorithm becomes identical to the original hard K-means algorithm, except for the way in which means with no assigned points behave. Describe what those means do instead of sitting still.
+\end{prob}
+\begin{sol}
+For $r_k^{(n)} = 1$, 
+\begin{align*}
+&\frac{\exp(-\beta d(m^{(k)}, x^{(n)}))}{\sum_{k'}\exp(-\beta d(m^{(k')}, x^{(n)}))}\\
+&=\frac{1}{1 + \sum_{k' \neq k}\exp(\beta (d(m^{(k)}, x^{(n)}) - d(m^{(k')}, x^{(n)})))} \\
+&\rightarrow 1
+\end{align*}
+This is because as $\beta \rightarrow \infty$, $\sum_{k' \neq k}\exp(\beta (d(m^{(k)}, x^{(n)}) - d(m^{(k')}, x^{(n)}))) \rightarrow 0$, since $d(m^{(k)}, x^{(n)}) < d(m^{(k')}, x^{(n)})$ for all $k' \neq k$.
+
+However, for $r_k^{(n)} = 0$, let $k^* = k^*(n)$ be the mean closest to $x^{(n)}$, and write $d_j = d(m^{(j)}, x^{(n)})$. Then
+\begin{align*}
+&\frac{\exp(-\beta d(m^{(k)}, x^{(n)}))}{\sum_{k'}\exp(-\beta d(m^{(k')}, x^{(n)}))}\\
+&=\frac{1}{1 + \exp(\beta (d_k - d_{k^*})) + \sum_{k' \neq k, k^*}\exp(\beta (d_k - d_{k'}))} \\
+&\rightarrow 0
+\end{align*}
+This is because as $\beta \rightarrow \infty$, $$\exp(\beta (d(m^{(k)}, x^{(n)}) - d(m^{(k^*)}, x^{(n)}))) \rightarrow \infty$$
+ and $$\sum_{k' \neq k, k^*}\exp(\beta (d(m^{(k)}, x^{(n)}) - d(m^{(k')}, x^{(n)}))) \geq 0.$$
+Above shows that soft K-means is identical to hard K-means when $\beta \rightarrow \infty$. \\
+
+Now take a mean $k$ with no assigned points, so $r_k^{(n)} \rightarrow 0$ for every $n$ and its update is of the form $0/0$.
+Let $Z_n = \sum_{k'} \exp(-\beta d(m^{(k')}, x^{(n)})) \approx \exp(-\beta d(m^{(k^*)}, x^{(n)}))$, so
+$r_k^{(n)} = \exp(-\beta d(m^{(k)}, x^{(n)})) / Z_n \approx \exp(-\beta \Delta^{(n)})$, where
+$\Delta^{(n)} = d(m^{(k)}, x^{(n)}) - d(m^{(k^*)}, x^{(n)}) > 0$. \\
+Let $n^* = \argmin_n \Delta^{(n)}$. Dividing the top and bottom by $\exp(-\beta \Delta^{(n^*)})$,
+$$\frac{\sum_{n} r_k^{(n)} x^{(n)}}{\sum_{n} r_k^{(n)}}
+\approx \frac{x^{(n^*)} + \sum_{n \neq n^*} \exp(-\beta (\Delta^{(n)} - \Delta^{(n^*)})) x^{(n)}}{1 + \sum_{n \neq n^*} \exp(-\beta (\Delta^{(n)} - \Delta^{(n^*)}))}
+\rightarrow x^{(n^*)}$$
+since $\Delta^{(n)} - \Delta^{(n^*)} > 0$ for $n \neq n^*$. \\
+This means a mean with no assigned points moves onto the point it lost by the smallest margin ($\Delta^{(n)}$ minimum). If several points tie, it moves to their average.
+\end{sol}
+\bigskip
+
+\begin{prob}{20.3}
+Explore the properties of the soft K-means algorithm, version 1, assuming that the data points $\{x\}$ come from a single separable two-dimensional Gaussian distribution with mean zero and variances $(\operatorname{var}(x_1), \operatorname{var}(x_2)) = (\sigma_1^2, \sigma_2^2)$, with $\sigma_1^2 > \sigma_2^2$. Set $K = 2$, assume $N$ is large, and investigate the fixed points of the algorithm as $\beta$ is varied. [Hint: assume that $m^{(1)} = (m, 0)$ and $m^{(2)} = (-m, 0)$.]
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{20.4}
+Consider the soft K-means algorithm applied to a large data set in which the points can be modelled as a mixture of narrow and broad clusters. What behaviour does the algorithm show as $\beta$ is increased and why?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{20.5}
+Why does the pitchfork in figure 20.11 tend to the value $m = 0$ when the stiffness parameter is small? Explain the mechanism qualitatively.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

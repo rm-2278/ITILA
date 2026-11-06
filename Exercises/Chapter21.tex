@@ -1,0 +1,44 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{21.2}
+After Fred receives the phone-call about the burglar alarm, but before he hears the radio report, what, from his point of view, is the probability that there was a small earthquake today?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{21.3}
+Imagine fitting a mixture of ten Gaussians to data in a twenty-dimensional space. Estimate the computational cost of implementing inferences for this model by enumeration of a grid of parameter values.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{33.1}
+Sketch the variational free energy as a function of its one parameter $\bar{x}$ for a variety of values of the temperature $T$ and the applied field $h$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.2}
+Show that, given $Q(\theta) = \delta(\theta - \theta^\ast)$, the optimal $Q_k$, in the sense of minimizing $\tilde{F}$, is a separable distribution in which the probability that $k_n = k$ is given by the responsibility $r_k^{(n)}$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.3}
+Show that, given a separable $Q_k$ as described above, the optimal $\theta^\ast$, in the sense of minimizing $\tilde{F}$, is obtained by the update step of the soft K-means algorithm. (Assume a uniform prior on $\theta$.)
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.4}
+We can instantly improve on the infinitely large value of $\tilde{F}$ achieved by soft K-means clustering by allowing $Q$ to be a more general distribution than a delta-function. Derive an update step in which $Q$ is allowed to be a separable distribution, a product of $Q_{\mu}(\{\mu\})$, $Q_{\sigma}(\{\sigma\})$, and $Q_{\pi}(\pi)$. Discuss whether this generalized algorithm still suffers from soft K-means’s `kaboom' problem, where the algorithm glues an ever-shrinking Gaussian to one data point.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.5}
+This exercise explores the assertion, made above, that the approximations given by variational free energy minimization always tend to be more compact than the true distribution. Consider a two-dimensional Gaussian distribution $P(x)$ with axes aligned with the directions $e^{(1)}=(1,1)$ and $e^{(2)}=(1,-1)$. Let the variances in these two directions be $\sigma_1^2$ and $\sigma_2^2$. What is the optimal variance if this distribution is approximated by a spherical Gaussian with variance $\sigma_Q^2$, optimized by variational free energy minimization? If we instead optimized the objective function
+\[
+G = \int dx\, P(x)\ln \frac{P(x)}{Q(x;\sigma^2)},
+\]
+what would be the optimal value of $\sigma^2$? Sketch a contour of the true distribution $P(x)$ and the two approximating distributions in the case $\sigma_1/\sigma_2 = 10$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.6}
+What do you think of the idea of using a variational method to optimize an approximating distribution $Q$ which we then use as a proposal density for importance sampling?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{33.7}
+Define the relative entropy or Kullback-Leibler divergence between two probability distributions $P$ and $Q$, and state Gibbs’ inequality. Consider the problem of approximating a joint distribution $P(x,y)$ by a separable distribution $Q(x,y) = Q_X(x)Q_Y(y)$. Show that if the objective function for this approximation is
+\[
+G(Q_X,Q_Y) = \sum_{x,y} P(x,y)\log_2\frac{P(x,y)}{Q_X(x)Q_Y(y)},
+\]
+then the minimum value of $G$ is achieved when $Q_X$ and $Q_Y$ are equal to the marginal distributions over $x$ and $y$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

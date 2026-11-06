@@ -1,0 +1,162 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{22.4}
+Show that the values $\mu_k$ that maximize a Gaussian-mixture likelihood satisfy the fixed-point relation in the one-dimensional Gaussian case.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.5}
+A random variable $x$ is assumed to have a probability distribution that is a mixture of two Gaussians,
+\[
+P(x \mid \mu_1, \mu_2, \sigma) = \sum_{k=1}^2 p_k \sqrt{\frac{1}{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu_k)^2}{2\sigma^2}\right),
+\]
+where $p_1 = p_2 = 1/2$. Show that the posterior probability of the class label $k_n$ of the $n$th point can be written as
+\[
+P(k_n = 1 \mid x_n, \theta) = \frac{1}{1 + \exp[-(w_1 x_n + w_0)]},
+\]
+\[
+P(k_n = 2 \mid x_n, \theta) = \frac{1}{1 + \exp[+(w_1 x_n + w_0)]},
+\]
+and give expressions for $w_1$ and $w_0$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.6}
+Investigate what happens if one mean $m^{(k)}$ sits exactly on top of one data point; show that if the variance $\sigma_k^2$ is sufficiently small, then no return is possible: $\sigma_k^2$ becomes ever smaller.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.7}
+Make a version of the K-means algorithm that models the data as a mixture of $K$ arbitrary Gaussians, i.e. Gaussians that are not constrained to be axis-aligned.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.8}
+(a) A photon counter is pointed at a remote star for one minute, in order to infer the brightness, i.e. the rate of photons arriving at the counter per minute, $\lambda$. Assuming the number of photons collected $r$ has a Poisson distribution with mean $\lambda$,
+\[
+P(r \mid \lambda) = e^{-\lambda}\frac{\lambda^r}{r!},
+\]
+what is the maximum likelihood estimate for $\lambda$, given $r=9$? Find error bars on $\ln\lambda$.
+
+(b) Same situation, but now we assume that the counter detects not only photons from the star but also background photons. The background rate is known to be $b=13$ photons per minute. We assume the number of photons collected, $r$, has a Poisson distribution with mean $\lambda + b$. Now, given $r=9$ detected photons, what is the maximum likelihood estimate for $\lambda$? Comment on this answer, discussing also the Bayesian posterior distribution and the unbiased estimator of sampling theory, $\hat{\lambda} \equiv r-b$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.9}
+A bent coin is tossed $N$ times, giving $N_h$ heads and $N_b$ tails. Assume a beta distribution prior for the probability of heads $p$, for example the uniform distribution. Find the maximum likelihood and maximum a posteriori values of $p$, then find the maximum likelihood and maximum a posteriori values of the logit $a \equiv \ln[p/(1-p)]$. Compare with the predictive distribution, i.e. the probability that the next toss will come up heads.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.10}
+Two men looked through prison bars; one saw stars, the other tried to infer where the window frame was. From the other side of a room, you look through a window and see stars at locations $\{(x_n,y_n)\}$. You cannot see the window edges because it is totally dark apart from the stars. Assuming the window is rectangular and that the visible stars’ locations are independently randomly distributed, what are the inferred values of $(x_{\min}, y_{\min}, x_{\max}, y_{\max})$ according to maximum likelihood? Sketch the likelihood as a function of $x_{\max}$, for fixed $x_{\min}, y_{\min}$, and $y_{\max}$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.11}
+A sailor infers his location $(x,y)$ by measuring the bearings of three buoys whose locations $(x_n,y_n)$ are given on his chart. Let the true bearings of the buoys be $\theta_n$. Assuming that his measurement $\tilde{\theta}_n$ of each bearing is subject to Gaussian noise of small standard deviation $\sigma$, what is his inferred location, by maximum likelihood? The sailor’s rule of thumb says that the boat’s position can be taken to be the centre of the cocked hat, the triangle produced by the intersection of the three measured bearings. Can you persuade him that the maximum likelihood answer is better?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.12}
+Maximum likelihood fitting of an exponential-family model. Assume that a variable $x$ comes from a probability distribution of the form
+\[
+P(x \mid w) = \frac{1}{Z(w)}\exp\left(\sum_k w_k f_k(x)\right),
+\]
+where the functions $f_k(x)$ are given and the parameters $w = \{w_k\}$ are not known. A data set $\{x^{(n)}\}$ of $N$ points is supplied. Show by differentiating the log likelihood that the maximum-likelihood parameters $w_{\mathrm{ML}}$ satisfy
+\[
+\sum_x P(x\mid w_{\mathrm{ML}})f_k(x) = \frac{1}{N}\sum_n f_k(x^{(n)}),
+\]
+for each $k$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.13}
+Maximum entropy fitting of models to constraints. When confronted by a probability distribution $P(x)$ about which only a few facts are known, the maximum entropy principle offers a rule for choosing a distribution that satisfies those constraints. Assuming the constraints assert that the averages of certain functions $f_k(x)$ are known, i.e.,
+\[
+\langle f_k \rangle_{P(x)} = F_k,
+\]
+show, by introducing Lagrange multipliers, that the maximum-entropy distribution has the form
+\[
+P(x)_{\mathrm{Maxent}} = \frac{1}{Z}\exp\left(\sum_k w_k f_k(x)\right),
+\]
+where $Z$ and $\{w_k\}$ are set such that the constraints are satisfied.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.14}
+This exercise explores the idea that maximizing a probability density is a poor way to find a point that is representative of the density. Consider a Gaussian distribution in a $k$-dimensional space,
+\[
+P(w) = \left(\frac{1}{\sqrt{2\pi}\sigma_W}\right)^k\exp\left(-\frac{1}{2\sigma_W^2}\sum_i w_i^2\right).
+\]
+Show that nearly all of the probability mass lies in a thin shell of radius $r \approx \sqrt{k}\,\sigma_W$ and thickness proportional to $r/\sqrt{k}$. Show that the maximum probability density is greater at the centre of the Gaussian with smaller $\sigma_W$ by a factor of approximately $\exp(0.01k)$ when two Gaussians with slightly different widths contain equal total probability mass.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.15}
+The seven scientists. $N$ data points $\{x_n\}$ are drawn from $N$ distributions, all of which are Gaussian with a common mean $\mu$ but with different unknown standard deviations $\sigma_n$. What are the maximum likelihood parameters $\mu, \{\sigma_n\}$ given the data? For example, seven scientists (A, B, C, D, E, F, G) with wildly differing experimental skills measure $\mu$. You expect some of them to do accurate work and some of them to turn in wildly inaccurate answers. Figure 22.9 shows their seven results. What is $\mu$, and how reliable is each scientist?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{22.16}
+Problems with MAP method. A collection of widgets $i = 1,\ldots,k$ has a property called `wodge', $w_i$, which we measure, widget by widget, in noisy experiments with known noise level $\sigma_\nu = 1.0$. Our model is that the quantities $w_i$ come from a Gaussian prior $P(w_i\mid\alpha) = \mathrm{Normal}(0,1/\alpha)$, where $\alpha=1/\sigma_W^2$ is not known. Our prior for this variance is flat over log $\sigma_W$ from $\sigma_W=0.1$ to $\sigma_W=10$.
+
+(a) Find the values of $w$ and $\alpha$ that maximize the posterior probability $P(w, \log\alpha \mid d)$.
+
+(b) Marginalize over $\alpha$ and find the posterior probability density of $w$ given the data. Find maxima of $P(w\mid d)$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

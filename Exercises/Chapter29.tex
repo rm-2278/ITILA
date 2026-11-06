@@ -1,0 +1,179 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{29.1}
+Prove that, if $Q(x)$ is non-zero for all $x$ where $P(x)$ is non-zero, then the importance-sampling estimator
+\[
+\hat{\Phi} = \frac{\sum_r w^{(r)}\Phi(x^{(r)})}{\sum_r w^{(r)}}
+\]
+with $w^{(r)} = P^\ast(x^{(r)})/Q^\ast(x^{(r)})$ is consistent for the expectation of $\Phi$ under $P$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.2}
+Consider the situation where $P^\ast(x)$ is multimodal, containing disconnected regions of high probability. Discuss why importance sampling using a single proposal distribution $Q$ may fail, and describe strategies to improve the method.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.3}
+Consider a one-dimensional random walk, on each step of which the position changes by $+1$ or $-1$ with equal probability. Show that the distribution over positions after $t$ steps is a binomial distribution, and compute its mean and variance.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.4}
+Show that a single variable-update of Gibbs sampling can be interpreted as a Metropolis update with a proposal distribution that exactly matches the conditional distribution of the variable given the others.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.5}
+Discuss whether the syndrome decoding problem for a code with a low-density parity-check matrix is well suited to Gibbs sampling or whether a deterministic local algorithm is preferable.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.7}
+Prove that detailed balance implies invariance of the distribution $P(x)$ under the Markov chain transition matrix.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.8}
+Show that, if we concatenate two base transitions $B_1$ and $B_2$ that satisfy detailed balance with respect to the same target distribution $P(x)$, then the composition also satisfies detailed balance.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.9}
+Does Gibbs sampling, with several variables all updated in a single sweep, still satisfy detailed balance? If not, what is the consequence for a practical implementation?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.10}
+Investigate the properties of slice sampling applied to the one-dimensional distribution with density proportional to $\exp(-|x|)$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.11}
+In the shrinking phase, after an unacceptable $X_0$ has been sampled, describe the procedure for shrinking the interval in slice sampling and explain why the method remains valid.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.12}
+Explain why the rate of movement through the state space is often slower when the target distribution is highly correlated than when it is nearly factorized.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.13}
+A study of importance sampling. We already established that importance sampling can be made consistent by weighting samples by $w(x)=P^\ast(x)/Q^\ast(x)$. Derive the variance of the estimator and discuss its dependence on the proposal distribution $Q$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.14}
+Consider the Metropolis algorithm for the one-dimensional Gaussian target distribution. Show how the acceptance probability depends on the proposal step size, and estimate the optimal step size for an acceptance rate near $0.5$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.15}
+Implement Gibbs sampling for the inference of a single Gaussian with unknown mean and variance.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.16}
+Gibbs sampling for clustering. Implement Gibbs sampling for a mixture of Gaussians with hidden cluster assignments.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.17}
+Implement Gibbs sampling for the seven scientists inference problem, which we encountered in exercise 22.15, and compare with exact marginalization.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.18}
+A Metropolis method is used to explore a distribution $P(x)$ that is actually a 1000-dimensional spherical Gaussian distribution of standard deviation 1 in all dimensions. The proposal density $Q$ is a 1000-dimensional spherical Gaussian distribution of standard deviation $\sigma_Q$. Roughly what is the step size $\sigma_Q$ if the acceptance rate is 0.5? Assuming this value of $\sigma_Q$:
+\begin{enumerate}
+    \item[(a)] roughly how long would the method take to traverse the distribution and generate a sample independent of the initial condition?
+    \item[(b)] by how much does $\ln P(x)$ change in a typical step? By how much should $\ln P(x)$ vary when $x$ is drawn from $P(x)$?
+    \item[(c)] what happens if, rather than using a Metropolis method that tries to change all components at once, one instead uses a concatenation of Metropolis updates changing one component at a time?
+\end{enumerate}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.19}
+When discussing the time taken by the Metropolis algorithm to generate independent samples we considered a distribution with longest spatial length scale $L$ being explored using a proposal distribution with step size $\Delta$. Another dimension that a MCMC method must explore is the range of possible values of the log probability $\ln P^\ast(x)$. Assuming that the state $x$ contains a number of independent random variables proportional to $N$, when samples are drawn from $P(x)$ the value of $-\ln P(x)$ is likely to be close to the entropy of $x$, varying either side with a standard deviation scaling as $\sqrt{N}$. Consider a Metropolis method with a symmetrical proposal density. Assuming accepted jumps either increase $\ln P^\ast(x)$ by some amount or decrease it by a small amount, discuss how long it must take to generate roughly independent samples from $P(x)$. Discuss whether Gibbs sampling has similar properties.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.20}
+Markov chain Monte Carlo methods do not compute partition functions $Z$, yet they allow ratios of quantities like $Z$ to be estimated. For example, consider a random-walk Metropolis algorithm in a state space where the energy is zero in a connected accessible region and infinitely large elsewhere; and imagine that the accessible space can be chopped into two regions connected by one or more corridor states. The fraction of times spent in each region at equilibrium is proportional to the volume of the region. How does the Monte Carlo method manage to do this without measuring the volumes?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{29.21}
+Philosophy. One curious defect of these Monte Carlo methods is that they are all non-Bayesian: they involve computer experiments from which estimators are derived, and the results depend on proposal distributions and random numbers. In contrast, an alternative Bayesian approach would use the results of computer experiments to infer properties of the target function $P(x)$ and generate predictive distributions for quantities of interest. Can you make a Bayesian Monte Carlo method?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

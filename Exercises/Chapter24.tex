@@ -1,0 +1,51 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{24.1}
+Give an intuitive explanation why the estimator $\sigma_N$ is biased, and how the bias depends on the number of observations.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{24.2}
+Marginalize over $\sigma$ and obtain the posterior marginal distribution of the mean $\mu$ given the data and a prior for $\mu$ and $\sigma$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{24.3}
+[This exercise requires macho integration capabilities.] Give the posterior predictive distribution for a new observation $x_{N+1}$ given data $\{x_n\}$ and a prior on $(\mu,\sigma)$, and show how the result reduces to the Student-\(t\) distribution in the appropriate limit.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

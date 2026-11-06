@@ -1,0 +1,111 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{30.1}
+Show that this individual transition leaves invariant the conditional distribution $x_i \sim \mathrm{Normal}(\mu,\sigma^2)$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.2}
+The transition matrix $T(x^0;x)$ defined by a complete update of all variables in some fixed order does not satisfy detailed balance. If the updates were in a random order, then $T$ would be symmetric. Investigate, for the toy two-dimensional Gaussian distribution, the assertion that the advantages of overrelaxation are lost if the overrelaxed updates are made in a random order.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.3}
+Discuss how the effectiveness of Skilling’s method scales with dimensionality, using a correlated $N$-dimensional Gaussian distribution as an example. Find an expression for the rejection probability, assuming the Markov chain is at equilibrium. Also discuss how it scales with the strength of correlation among the Gaussian variables.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.5}
+Let $x \in \{0,1\}^G$ and let $P(x)$ be a separable distribution,
+\[
+P(x) = \prod_g p(x_g),
+\]
+with $p(0)=p_0$ and $p(1)=p_1$ (for example $p_1=0.1$). Let the proposal density of a dumb Metropolis algorithm $Q$ involve flipping a fraction $m$ of the $G$ bits in the state $x$. Analyze how long it takes for the chain to converge to the target density as a function of $m$. Find the optimal $m$ and deduce how long the Metropolis method must run for.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.6}
+Does Gibbs sampling, which is a smart Metropolis method whose proposal distributions do depend on $P(x)$, allow information about $P(x)$ to leak out at a rate faster than one bit per iteration? Find toy examples in which this question can be precisely investigated.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.7}
+Hamiltonian Monte Carlo is another smart Metropolis method in which the proposal distributions depend on $P(x)$. Can Hamiltonian Monte Carlo extract information about $P(x)$ at a rate faster than one bit per iteration?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.8}
+In importance sampling, the weight $w^{(r)} = P^\ast(x^{(r)})/Q^\ast(x^{(r)})$ is a floating-point number, whereas in a dumb Metropolis method the ratio $a=P^\ast(x')/P^\ast(x)$ is reduced to a single bit. Thus in principle importance sampling preserves more information about $P^\ast$ than dumb Metropolis. Can you find a toy example in which this extra information does indeed lead to faster convergence of importance sampling than Metropolis? Can you design a Markov chain Monte Carlo algorithm that moves around adaptively, like a Metropolis method, and retains more useful information about the value of $P^\ast$, like importance sampling?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.9}
+Discuss whether the above two operators, individual variation and crossover with the Metropolis acceptance rule, will give a more efficient Monte Carlo method than a standard method with only one state vector and no crossover.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.10}
+Design a birth rule and a death rule such that the chain converges to $P^\ast(\{x^{(r)}\}_{r=1}^{R})$.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.11}
+An important detail of the Hamiltonian Monte Carlo method is that the simulation of the Hamiltonian dynamics, while it may be inaccurate, must be perfectly reversible, in the sense that if the initial condition $(x,p)$ goes to $(x',p')$, then the same simulator must take $(x',-p')$ to $(x,-p)$, and the inaccurate dynamics must conserve state-space volume. Explain why these rules must be satisfied and create an example illustrating the problems that arise if they are not.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{30.12}
+A multi-state idea for slice sampling. Investigate the following multi-state method for slice sampling. As in Skilling’s multi-state leapfrog method, maintain a set of $S$ state vectors $\{x^{(s)}\}$. Update one state vector $x^{(s)}$ by one-dimensional slice sampling in a direction $y$ determined by picking two other state vectors $x^{(v)}$ and $x^{(w)}$ at random and setting $y = x^{(v)} - x^{(w)}$. Investigate this method on toy problems such as a highly correlated multivariate Gaussian distribution.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

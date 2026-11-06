@@ -1,0 +1,72 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{31.1}
+[We will call the entropy of a physical system $S$ rather than $H$, while we are in a statistical physics chapter; we set $k_B=1$.] The entropy of a system whose states are $x$, at temperature $T=1/\beta$, is
+\[
+S = \sum_x p(x)\ln \frac{1}{p(x)},
+\]
+where
+\[
+ p(x)=\frac{1}{Z(\beta)}\exp[-\beta E(x)].
+\]
+\begin{enumerate}
+    \item[(a)] Show that
+    \[
+    S = \ln Z(\beta)+\beta \bar{E}(\beta),
+    \]
+    where $\bar{E}(\beta)$ is the mean energy of the system.
+    \item[(b)] Show that
+    \[
+    S = -\frac{\partial F}{\partial T},
+    \]
+    where the free energy is $F = -kT\ln Z$ and $kT = 1/\beta$.
+\end{enumerate}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{31.2}
+What would be the best way to extract the entropy from the Monte Carlo simulations? What would be the best way to obtain the entropy and the heat capacity from the partition function computation?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{31.3}
+An Ising model may be generalized to have a coupling $J_{mn}$ between any spins $m$ and $n$, and the value of $J_{mn}$ could be different for each $m$ and $n$. In the special case where all the couplings are positive we know that the system has two ground states, the all-up and all-down states. For a more general setting of $J_{mn}$ it is conceivable that there could be many ground states.
+
+Imagine that it is required to make a spin system whose local minima are a given list of states $x^{(1)}, x^{(2)}, \ldots, x^{(S)}$. Can you think of a way of setting $J$ such that the chosen states are low energy states? You are allowed to adjust all the $\{J_{mn}\}$ to whatever values you wish.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

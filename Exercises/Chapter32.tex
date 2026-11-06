@@ -1,0 +1,72 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{32.1}
+Is there any relationship between the probability distribution of the time taken for all trajectories to coalesce and the equilibration time of a Markov chain? Prove that there is a relationship, or find a single chain that can be realized in two different ways that have different coalescence times.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{32.2}
+Imagine that Fred ignores the requirement that the random bits used at some time $t$, in every run from increasingly distant times $T_0$, must be identical, and makes a coupled-Markov-chain simulator that uses fresh random numbers every time $T_0$ is changed. Describe what happens if Fred applies his method to the Markov chain that is intended to sample from the uniform distribution over the states $0,1,2$, using the Metropolis method, driven by a random bit source as in figure 32.1b.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{32.3}
+Investigate the application of perfect sampling to linear regression in Holmes and Mallick (1998) or Holmes and Denison (2002), and try to generalize it.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{32.4}
+The concept of coalescence has many applications. Some surnames are more frequent than others, and some die out altogether. Make a model of this process; how long will it take until everyone has the same surname? Similarly, variability in any particular portion of the human genome is inherited like a surname. Should the fact that these surnames are subject to coalescences affect the way in which DNA fingerprint evidence is used in court?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{32.5}
+How can you use a coin to create a random ranking of 3 people? Construct a solution that uses exact sampling. For example, you could apply exact sampling to a Markov chain in which the coin is repeatedly used alternately to decide whether to switch first and second, then whether to switch second and third.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{32.6}
+Finding the partition function $Z$ of a probability distribution is a difficult problem. Many Markov chain Monte Carlo methods produce valid samples from a distribution without ever finding out what $Z$ is. Is there any probability distribution and Markov chain such that either the time taken to produce a perfect sample or the number of random bits used to create a perfect sample are related to the value of $Z$? Are there some situations in which the time to coalescence conveys information about $Z$?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}
