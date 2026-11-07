@@ -31,6 +31,7 @@
 After Fred receives the phone-call about the burglar alarm, but before he hears the radio report, what, from his point of view, is the probability that there was a small earthquake today?
 \end{prob}
 \begin{sol}
+$$P(e=1|a=1) = 0.006$$
 \end{sol}
 \bigskip
 
@@ -38,6 +39,8 @@ After Fred receives the phone-call about the burglar alarm, but before he hears 
 Imagine fitting a mixture of ten Gaussians to data in a twenty-dimensional space. Estimate the computational cost of implementing inferences for this model by enumeration of a grid of parameter values.
 \end{prob}
 \begin{sol}
+The number of free parameters are 20*10=200 for mean, 20*10=200 for variance and 10-1=9 for the mixing weights,
+giving 409 in total. This mean if we grid search with x points per parameter, the computational cost will be $O(x^{409})$.
 \end{sol}
 \bigskip
 

@@ -1,0 +1,105 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{28.1}
+Random variables $x$ come independently from a probability distribution $P(x)$. According to model $\mathcal{H}_0$, $P(x)$ is a uniform distribution
+\[
+P(x \mid \mathcal{H}_0) = \frac{1}{2} \qquad x \in (-1, 1).
+\]
+According to model $\mathcal{H}_1$, $P(x)$ is a nonuniform distribution with an unknown parameter $m \in (-1, 1)$:
+\[
+P(x \mid m, \mathcal{H}_1) = \frac{1}{2}(1 + mx) \qquad x \in (-1, 1).
+\]
+Given the data $D = \{0.3, 0.5, 0.7, 0.8, 0.9\}$, what is the evidence for $\mathcal{H}_0$ and $\mathcal{H}_1$?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{28.2}
+Datapoints $(x, t)$ are believed to come from a straight line. The experimenter chooses $x$, and $t$ is Gaussian-distributed about
+\[
+y = w_0 + w_1 x
+\]
+with variance $\sigma_\nu^2$. According to model $\mathcal{H}_1$, the straight line is horizontal, so $w_1 = 0$. According to model $\mathcal{H}_2$, $w_1$ is a parameter with prior distribution $\text{Normal}(0, 1)$. Both models assign a prior distribution $\text{Normal}(0, 1)$ to $w_0$. Given the data set $D = \{(-8, 8), (-2, 10), (6, 11)\}$, and assuming the noise level is $\sigma_\nu = 1$, what is the evidence for each model?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{28.3}
+A six-sided die is rolled 30 times and the numbers of times each face came up were $\mathbf{F} = \{3, 3, 2, 2, 9, 11\}$. What is the probability that the die is a perfectly fair die (`$\mathcal{H}_0$'), assuming the alternative hypothesis $\mathcal{H}_1$ says that the die has a biased distribution $\mathbf{p}$, and the prior density for $\mathbf{p}$ is uniform over the simplex $p_i \geq 0$, $\sum_i p_i = 1$?
+
+Solve this problem two ways: exactly, using the helpful Dirichlet formulae (23.30, 23.31), and approximately, using Laplace's method. Notice that your choice of basis for the Laplace approximation is important. See MacKay (1998a) for discussion of this exercise.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{28.4}
+The influence of race on the imposition of the death penalty for murder in America has been much studied. The following three-way table classifies 326 cases in which the defendant was convicted of murder. The three variables are the defendant's race, the victim's race, and whether the defendant was sentenced to death. (Data from M. Radelet, `Racial characteristics and imposition of the death penalty,' \emph{American Sociological Review}, 46 (1981), pp.\ 918--927.)
+\begin{center}
+\begin{tabular}{lcc}
+\multicolumn{3}{c}{White defendant} \\
+ & \multicolumn{2}{c}{Death penalty} \\
+ & Yes & No \\
+\hline
+White victim & 19 & 132 \\
+Black victim & 0 & 9
+\end{tabular}
+\qquad
+\begin{tabular}{lcc}
+\multicolumn{3}{c}{Black defendant} \\
+ & \multicolumn{2}{c}{Death penalty} \\
+ & Yes & No \\
+\hline
+White victim & 11 & 52 \\
+Black victim & 6 & 97
+\end{tabular}
+\end{center}
+It seems that the death penalty was applied much more often when the victim was white than when the victim was black. When the victim was white 14\% of defendants got the death penalty, but when the victim was black 6\% of defendants got the death penalty. [Incidentally, these data provide an example of a phenomenon known as Simpson's paradox: a higher fraction of white defendants are sentenced to death overall, but in cases involving black victims a higher fraction of black defendants are sentenced to death and in cases involving white victims a higher fraction of black defendants are sentenced to death.]
+
+Quantify the evidence for the four alternative hypotheses shown in figure 28.9. I should mention that I don't believe any of these models is adequate: several additional variables are important in murder cases, such as whether the victim and murderer knew each other, whether the murder was premeditated, and whether the defendant had a prior criminal record; none of these variables is included in the table. So this is an academic exercise in model comparison rather than a serious study of racial bias in the state of Florida.
+
+The hypotheses are shown as graphical models, with arrows showing dependencies between the variables $v$ (victim race), $m$ (murderer race), and $d$ (whether death penalty given). Model $\mathcal{H}_{00}$ has only one free parameter, the probability of receiving the death penalty; model $\mathcal{H}_{11}$ has four such parameters, one for each state of the variables $v$ and $m$. Assign uniform priors to these variables. How sensitive are the conclusions to the choice of prior?
+
+\medskip
+\noindent\emph{Figure 28.9 (in words).} The four hypotheses about what $d$ depends on:
+\begin{itemize}[nosep]
+    \item $\mathcal{H}_{11}$: $v \rightarrow d \leftarrow m$ ($d$ depends on both victim's and murderer's race).
+    \item $\mathcal{H}_{10}$: $v \rightarrow d$ ($d$ depends on the victim's race only).
+    \item $\mathcal{H}_{01}$: $m \rightarrow d$ ($d$ depends on the murderer's race only).
+    \item $\mathcal{H}_{00}$: no arrows into $d$ ($d$ depends on neither).
+\end{itemize}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}
