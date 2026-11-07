@@ -4,7 +4,7 @@
     "latex-workshop.latex.tools": [
         {
             "name": "latexmk",
-            "command": "/Library/TeX/texbin/latexmk",
+            "command": "latexmk",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
@@ -20,7 +20,7 @@
         },
         {
             "name": "lualatexmk",
-            "command": "/Library/TeX/texbin/latexmk",
+            "command": "latexmk",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
@@ -36,7 +36,7 @@
         },
         {
             "name": "xelatexmk",
-            "command": "/Library/TeX/texbin/latexmk",
+            "command": "latexmk",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",

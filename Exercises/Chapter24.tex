@@ -42,6 +42,26 @@ so the expected variance from the true mean must be greater than the variance of
 Marginalize over $\sigma$ and obtain the posterior marginal distribution of the mean $\mu$ given the data and a prior for $\mu$ and $\sigma$.
 \end{prob}
 \begin{sol}
+\begin{align*}
+P(\mu | D) &= \frac{P(D | \mu)P(\mu)}{P(D)} \\
+P(\mu | D) &\propto P(D | \mu) \\
+&= \int_{0}^{\infty} P(D | \mu, \sigma)P(\sigma) d\sigma \\
+&= \int_{0}^{\infty} \prod_{n=1}^N \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x_n - \mu)^2}{2\sigma^2}) \frac{1}{\sigma} d\sigma \\
+&\propto \int_{0}^{\infty} \frac{1}{\sigma^{N+1}}\exp(-\sum_{n=1}^{N}\frac{(x_n - \mu)^2}{2\sigma^2}) d\sigma \\
+&= \int_{0}^{\infty}\frac{1}{\sigma^{N+1}}\exp(-\frac{S_\mu}{2\sigma^2}) d\sigma \quad (S_\mu = \sum_{n=1}^{N} (x_n - \mu)^2) \quad \dots (1) \\
+\end{align*}
+Now, if we let $t = \frac{S_\mu}{2\sigma^2}$, $\sigma = \sqrt{\frac{S_\mu}{2t}}$, then
+$$\frac{d\sigma}{dt} = \sqrt{\frac{S_\mu}{2}} \times -\frac{1}{2}t^{-\frac{3}{2}}$$
+\begin{align*}
+(1) &= \int_{\infty}^{0} \left(\frac{S_\mu}{2t}\right)^{-\frac{N}{2} - \frac{1}{2}} \exp(-t) \times -\frac{1}{2}t^{-\frac{3}{2}} \left(\frac{S_\mu}{2}\right)^{\frac{1}{2}} dt \\
+&= -\frac{1}{2} \int_{\infty}^{0} \left(\frac{S_\mu}{2t}\right)^{-\frac{N}{2}} \left(\frac{1}{t}\right)^{-\frac{N}{2}+1} \exp(-t) dt \\
+&= \frac{1}{2}\left(\frac{S_\mu}{2t}\right)^{-\frac{N}{2}} \int_{0}^{\infty} t^{\frac{N}{2} - 1} \exp(-t) dt \\
+&= \frac{1}{2} \left(\frac{S_\mu}{2t}\right)^{-\frac{N}{2}} \Gamma(\frac{N}{2}) \\
+\end{align*}
+Only considering terms that depend on $\mu$, 
+\begin{align*}
+P(\mu | D) &\propto S_\mu^{-\frac{N}{2}} = \frac{1}{[N(\mu - \bar{x}) + S]^{\frac{N}{2}}} \\
+\end{align*}
 \end{sol}
 \bigskip
 
