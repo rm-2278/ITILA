@@ -70,8 +70,8 @@ is the probability distribution of $z$? What is the probability that $z < 1$?
 \end{prob}
 \begin{sol}
 \begin{align*}
-    \operatorname{E}[z] &= \frac{1}{Nf_b(1-f_B)}(\operatorname{E}[n_B^2] - 2\operatorname{E}[f_B n_B N] + \operatorname{E}[f_B^2 N^2])
-    &= \frac{1}{Nf(1-f)}(Nf(1-f) + N^2f^2 - 2N^2 f^2 + N^2f^2)
+    \operatorname{E}[z] &= \frac{1}{Nf_b(1-f_B)}(\operatorname{E}[n_B^2] - 2\operatorname{E}[f_B n_B N] + \operatorname{E}[f_B^2 N^2]) \\
+    &= \frac{1}{Nf(1-f)}(Nf(1-f) + N^2f^2 - 2N^2 f^2 + N^2f^2) \\
     &= 1
 \end{align*}
 With $N = 5$ and $f_B = \frac{1}{5}$,
@@ -108,7 +108,7 @@ compute the probability that the $N + 1$th outcome will be a head, for
 \end{prob}
 \begin{sol}
 \begin{align*}
-    P(f_H | n_H, N) &= \frac{P(n_H | f_H, N) P(f_H)}{P(n_H | N)}
+    P(f_H | n_H, N) &= \frac{P(n_H | f_H, N) P(f_H)}{P(n_H | N)} \\
     &= \frac{P(n_H | f_H, N)}{P(n_H | N)} = \frac{\binom{N}{n_H} f_H^{n_H} (1-f_H)^{N-n_H}}{P(n_H | N)}
 \end{align*}
 Now,
@@ -288,7 +288,7 @@ Evaluate $f$ for the cases $N = 2$, $N = 10$ and $N = 1000$, with (a) $\epsilon/
 \begin{enumerate}
     \item[(a)] 
 \begin{tabular}{c|ccc}
-    N & 2 & 100 & 1000 \\
+    N & 2 & 10 & 1000 \\
     \hline
     f ($\frac{\epsilon}{r} = 0.01$) & 0.0199 & 0.0956 & 0.99996 \\
 \end{tabular}
@@ -367,7 +367,7 @@ P \left( \left| \log \frac{P(x)}{0.2} \right| > 0.05 \right)?
 \begin{sol}
     \begin{align*}
         H(X) &= \operatorname{E}\left[\log \frac{1}{P(X)} \right] \\
-        & \leq \log (\operatorname{E}\left[\log \frac{1}{P(X)} \right]) \\
+        & \leq \log (\operatorname{E}\left[\frac{1}{P(X)} \right]) \\
         &= \log (|\mathcal{A}_X|) \quad (\because \text{concave})
     \end{align*}
     Equality when $\frac{1}{P(X)}$ is constant, i.e. $p_i$ constant, i.e. $p_i = \frac{1}{|\mathcal{A}_X|}$
@@ -393,7 +393,7 @@ $\iff Q(X) = P(X) \quad (\because \sum_{x} Q(X) = \sum_{x} P(X) = 1)$
     Prove that the entropy is indeed decomposable as described in equations (2.43--2.44).
 \end{prob}
 \begin{sol}
-    Let $p_x \sim p_y = \sum_{i=1}^{x} p_i$.
+    Let $p_x \sim p_y = \sum_{i=x}^{y} p_i$.
     \begin{align*}
         H(p) &= \sum_{i=1}^{I} p_i \log \frac{1}{p_i} \\
         &= \sum_{i=1}^{m} (p_1 \sim p_m) \frac{p_i}{p_1 \sim p_m} \log \frac{1}{p_i} + \sum_{i=m+1}^{I} (p_{m+1} \sim p_I) \frac{p_i}{p_{m+1} \sim p_I} \log \frac{1}{p_i} \\
@@ -637,10 +637,10 @@ On an occasion, after one of them made a statement, you ask another `was that st
         &= \sum_{n=1}^{12367} \frac{1}{10n} \log 10n \\
         &= \frac{1}{10} \sum_{n=1}^{12367} \frac{\log 10n}{n} \\
         &\approx \frac{1}{10} \int_{1}^{12367} \frac{\log_2 10n}{n} dn \\
-        &= \frac{1}{10} \left[ \frac{(\log_2 10n)^2}{2 \ln 2} \right]_1^12367 \\
-        &= \frac{\ln 2}{10} \left\{ \frac{(\log 123670)^2}{2} - \frac{(\log 10)^2}{2} \right\} \\
-        &= 13.76 \ln 2 \\
-        &= 9.5377
+        &= \frac{1}{10} \left[ \frac{\ln 2 \, (\log_2 10n)^2}{2} \right]_1^{12367} \\
+        &= \frac{\ln 2}{10} \left\{ \frac{(\log_2 123670)^2}{2} - \frac{(\log_2 10)^2}{2} \right\} \\
+        &= 13.756 \ln 2 \\
+        &= 9.535
     \end{align*}
 \end{sol}
 \bigskip
