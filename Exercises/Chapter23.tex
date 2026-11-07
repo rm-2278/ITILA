@@ -1,0 +1,68 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black,
+    title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    left=3mm, right=3mm,
+    boxrule=0mm,
+    top=0mm, bottom=0mm,
+    parbox=false,
+    before upper={\textbf{Solution:}\par\medskip}
+}
+
+\begin{document}
+
+\begin{prob}{23.1}
+Pick a variable that is supposedly bell-shaped in probability distribution, gather data, and make a plot of the variable's empirical distribution. Show the distribution as a histogram on a log scale and investigate whether the tails are well-modelled by a Gaussian distribution. [One example of a variable to study is the amplitude of an audio signal.]
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{23.2}
+Imagine that we reparameterize a positive variable $x$ in terms of its cube root, $u = x^{1/3}$. If the probability density of $x$ is the improper distribution $1/x$, what is the probability density of $u$?
+\end{prob}
+\begin{sol}
+$$P_U(u) = P_X(x)\left| \frac{dx}{du} \right|$$
+$$\frac{dx}{du} = 3u^2$$
+$$P_U(u) = \frac{1}{x}3u^2 = \frac{3u^2}{u^3} = \frac{3}{u}$$
+This shows the inproper distribution is scale-invariant.
+\end{sol}
+\bigskip
+
+\begin{prob}{23.3}
+The Dirichlet distribution satisfies a nice additivity property. Imagine that a biased six-sided die has two red faces and four blue faces. The die is rolled $N$ times and two Bayesians examine the outcomes in order to infer the bias of the die and make predictions. One Bayesian has access to the red/blue colour outcomes only, and he infers a two-component probability vector $(p_R, p_B)$. The other Bayesian has access to each full outcome: he can see which of the six faces came up, and he infers a six-component probability vector $(p_1, p_2, p_3, p_4, p_5, p_6)$, where $p_R = p_1 + p_2$ and $p_B = p_3 + p_4 + p_5 + p_6$. Assuming that the second Bayesian assigns a Dirichlet distribution to $(p_1, \ldots, p_6)$ with hyperparameters $(u_1, u_2, u_3, u_4, u_5, u_6)$, show that, in order for the first Bayesian's inferences to be consistent with those of the second Bayesian, the first Bayesian's prior should be a Dirichlet distribution with hyperparameters $\big((u_1 + u_2), (u_3 + u_4 + u_5 + u_6)\big)$.
+
+Hint: a brute-force approach is to compute the integral
+\[
+P(p_R, p_B) = \int d^6\mathbf{p}\; P(\mathbf{p} \mid \mathbf{u})\, \delta\big(p_R - (p_1 + p_2)\big)\, \delta\big(p_B - (p_3 + p_4 + p_5 + p_6)\big).
+\]
+A cheaper approach is to compute the predictive distributions, given arbitrary data $(F_1, F_2, F_3, F_4, F_5, F_6)$, and find the condition for the two predictive distributions to match for all data.
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\begin{prob}{23.4}
+$N$ datapoints $\{x_n\}$ are drawn from a gamma distribution $P(x \mid s, c) = \Gamma(x; s, c)$ with unknown parameters $s$ and $c$. What are the maximum likelihood parameters $s$ and $c$?
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+\end{document}

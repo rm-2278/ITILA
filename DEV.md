@@ -18,6 +18,8 @@ The `standalone` class keeps the page tightly cropped, so the resulting PNG can 
 9
 20.3, 20.4, 20.5
 22.7-22.16
+23.1, 23.3, 23.4
+
 
 ## Read
 1, 2, 3, 4, 5, 6, 7, 8, 9
