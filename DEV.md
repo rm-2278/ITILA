@@ -17,12 +17,17 @@ The `standalone` class keeps the page tightly cropped, so the resulting PNG can 
 8
 9
 20.3, 20.4, 20.5
+22.7-22.16
 
 ## Read
 1, 2, 3, 4, 5, 6, 7, 8, 9
-20, 21
+20, 21, 22
 
 
 ## Done
 1, 2, 4
 21
+
+
+## Maybe fun implementing
+22: Soft K-means algorithm
